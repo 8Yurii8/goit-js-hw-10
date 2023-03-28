@@ -24,7 +24,7 @@ inputHandleText.addEventListener(
       .then(countries => {
         // перевірка на максимум
         if (countries.length >= 10) {
-          return Notiflix.Report.info(
+          return Notiflix.Notify.info(
             `Too many matches found. Please enter a more specific name.`
           );
         }
@@ -50,6 +50,9 @@ inputHandleText.addEventListener(
           applyCountryIteamStyles();
         }
       })
+      .catch(error => {
+        Notiflix.Notify.info(`Oops, there is no country with that name`);
+      })
       .finally(() => {
         // Очищує список
         if (event.target.value === '') {
@@ -64,7 +67,7 @@ inputHandleText.addEventListener(
 function createCountryList(countries) {
   return countries
     .map(({ flags, name }) => {
-      return `<li class="country-list-iteam"><span><img src="${flags.svg}" height="30" width="30" /></span>${name.common}</li>`;
+      return `<li class="country-list-iteam"><span><img src="${flags.svg}" height="30" width="30" /></span>${name.official}</li>`;
     })
     .join('');
 }
@@ -116,5 +119,3 @@ function applyCountryIteamStyles() {
   // стиль для P
 }
 // додаємо стилі до div
-
-// по "name.official" на прикладі країни "Sweden" повертає "Kingdom of Sweden" а на відео видно що використовуєтся "name.common" і він якраз повертає "Sweden" якщо так не підходить для здачі ДЗ то я поверно так як описано в ТЗ але тоді нажаль воно не сходится з відео ТЗ

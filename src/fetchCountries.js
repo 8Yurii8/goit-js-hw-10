@@ -12,6 +12,6 @@ export function fetchCountries(name) {
       return data;
     })
     .catch(error => {
-      console.log(`Error`);
+      console.log('Error');
     });
 }
